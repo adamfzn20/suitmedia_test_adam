@@ -1,16 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../models/user_model.dart';
+import '../../models/name_model.dart';
 
-class UserProvider with ChangeNotifier {
-  late User _user;
+class NameProvider with ChangeNotifier {
+  late NameModel _name;
   SharedPreferences? _preferences;
 
-  User get user => _user;
+  NameModel get name => _name;
 
-  UserProvider() {
-    _user = User(name: '');
+  NameProvider() {
+    _name = NameModel(name: '');
 
     _initPreferences();
     _getUserData();
@@ -22,16 +22,16 @@ class UserProvider with ChangeNotifier {
 
   Future<void> _getUserData() async {
     final name = _preferences?.getString('name') ?? '';
-    _user = User(name: name);
+    _name = NameModel(name: name);
     notifyListeners();
   }
 
   Future<void> saveUserData() async {
-    await _preferences?.setString('name', _user.name);
+    await _preferences?.setString('name', _name.name);
   }
 
   void setName(String name) {
-    _user = User(name: name);
+    _name = NameModel(name: name);
     notifyListeners();
   }
 }

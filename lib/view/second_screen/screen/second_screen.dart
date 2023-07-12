@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:suitmedia_test_adam/utils/widget/custom_button_widget.dart';
 
-import '../../../view_model/first_screen/user_provider.dart';
+import '../../../view_model/first_screen/name_provider.dart';
+import '../../../view_model/third_screen/get_users_list_provider.dart';
+import '../../third_screen/screen/third_screen.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
@@ -15,7 +17,10 @@ class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-    final userProvider = Provider.of<UserProvider>(context);
+    final userProvider = Provider.of<NameProvider>(context);
+    final getUsersProvider = Provider.of<GetUsersListProvider>(context);
+    final selectedUser = getUsersProvider.selectedUser;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -44,7 +49,7 @@ class _SecondScreenState extends State<SecondScreen> {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Text(
-                  userProvider.user.name,
+                  userProvider.name.name,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
@@ -53,7 +58,9 @@ class _SecondScreenState extends State<SecondScreen> {
               padding: EdgeInsets.only(top: screenHeight * 0.3),
               child: Center(
                 child: Text(
-                  'Selected User Name',
+                  selectedUser != null
+                      ? '${selectedUser.firstName} ${selectedUser.lastName}'
+                      : 'Selected User Name',
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
@@ -62,7 +69,14 @@ class _SecondScreenState extends State<SecondScreen> {
               padding: EdgeInsets.only(top: screenHeight * 0.35),
               child: CustomButton(
                 text: 'Choose a User',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ThirdScreen(),
+                    ),
+                  );
+                },
               ),
             ),
           ],

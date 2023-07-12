@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:suitmedia_test_adam/utils/widget/custom_button_widget.dart';
 import 'package:suitmedia_test_adam/view/first_screen/widget/custom_textformfield_widget.dart';
 import 'package:suitmedia_test_adam/view/second_screen/screen/second_screen.dart';
-import 'package:suitmedia_test_adam/view_model/first_screen/user_provider.dart';
+import 'package:suitmedia_test_adam/view_model/first_screen/name_provider.dart';
 
 import '../../../view_model/first_screen/palindrom_provider.dart';
 
@@ -58,7 +58,7 @@ class _FirstScreenState extends State<FirstScreen> {
 
     void goToSecondScreen() {
       String name = _nameController.text;
-      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      final userProvider = Provider.of<NameProvider>(context, listen: false);
 
       if (_formKey.currentState!.validate()) {
         userProvider.setName(name);
