@@ -47,8 +47,8 @@ class _ThirdScreenState extends State<ThirdScreen> {
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
           child: ListView(
-            children: [
-              const SizedBox(
+            children: const [
+              SizedBox(
                 height: 16,
               ),
               UsersListWidget(

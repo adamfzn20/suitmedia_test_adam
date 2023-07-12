@@ -110,14 +110,6 @@ class UsersListWidget extends StatelessWidget {
                         color: Colors.black54,
                       ),
                 ),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Try Again?",
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.black87,
-                          ),
-                    ))
               ],
             ),
           ),
